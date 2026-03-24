@@ -14,11 +14,10 @@ html{scroll-behavior:smooth}
   --white:#F2EDE6;--white2:#C8C0B5;--white3:#8A8278;
   --border:rgba(217,27,27,0.18);--border2:rgba(217,27,27,0.08)
 }
-body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;cursor:none;overflow-x:hidden}
+body{background:var(--black);color:var(--white);font-family:'Barlow',sans-serif;overflow-x:hidden}
 
 /* CURSOR */
-#cursor{position:fixed;width:12px;height:12px;background:var(--red);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s}
-#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(217,27,27,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .08s ease;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%)}
+
 body:has(a:hover) #cursor,body:has(button:hover) #cursor{width:20px;height:20px;background:var(--red-bright)}
 body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:50px;height:50px}
 
@@ -29,13 +28,30 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring{width:50px;he
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:20px 60px;background:rgba(8,8,8,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;display:flex;align-items:center;gap:6px}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;display:flex;align-items:center;gap:6px;text-decoration:none;color:var(--white)}
 .nav-logo .n2{color:var(--red);font-size:34px;line-height:1}
 .nav-links{display:flex;gap:40px;list-style:none}
 .nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--white3);text-decoration:none;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent}
 .nav-links a:hover{color:var(--white);border-bottom-color:var(--red)}
-.nav-cta{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:12px 30px;cursor:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background .2s}
+.nav-cta{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:3px;text-transform:uppercase;background:var(--red);color:var(--white);border:none;padding:12px 30px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background .2s;text-decoration:none;display:inline-block}
 .nav-cta:hover{background:var(--red-bright)}
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:600}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* MOBILE MENU */
+.mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(8,8,8,0.98);z-index:400;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-menu.open{opacity:1;pointer-events:all}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:3px;color:var(--white3);text-decoration:none;transition:color .2s}
+.mobile-menu a:hover{color:var(--red)}
+.mobile-menu .mob-cta{background:var(--red);color:var(--white);padding:16px 48px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:3px;text-transform:uppercase;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);text-decoration:none;margin-top:16px}
+@media(max-width:768px){
+  nav{padding:16px 24px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+}
 
 /* HERO */
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 480px;align-items:center;padding:140px 60px 80px;position:relative;overflow:hidden;gap:60px}
@@ -54,11 +70,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .hero-sub{font-size:19px;line-height:1.65;color:var(--white2);max-width:520px;margin-bottom:48px;font-style:italic}
 .hero-sub strong{color:var(--white);font-style:normal;font-weight:600}
 .hero-btns{display:flex;gap:16px}
-.btn-red{background:var(--red);color:var(--white);padding:18px 44px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all .2s;position:relative;overflow:hidden}
+.btn-red{background:var(--red);color:var(--white);padding:18px 44px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:3px;text-transform:uppercase;border:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all .2s;position:relative;overflow:hidden;display:inline-block;text-decoration:none}
 .btn-red::after{content:'';position:absolute;inset:0;background:var(--red-bright);opacity:0;transition:opacity .2s}
 .btn-red:hover::after{opacity:1}
 .btn-red span{position:relative;z-index:1}
-.btn-ghost{background:transparent;color:var(--white2);padding:18px 44px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:3px;text-transform:uppercase;border:1px solid rgba(242,237,230,0.2);cursor:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all .2s}
+.btn-ghost{background:transparent;color:var(--white2);padding:18px 44px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:3px;text-transform:uppercase;border:1px solid rgba(242,237,230,0.2);clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all .2s;text-decoration:none;display:inline-block}
 .btn-ghost:hover{border-color:var(--red);color:var(--red)}
 .hero-right{position:relative;display:flex;align-items:center;justify-content:center}
 .hero-logo-wrap{position:relative;user-select:none}
@@ -266,23 +282,94 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px}
 .footer-bottom{border-top:1px solid var(--border);padding-top:28px;display:flex;justify-content:space-between;align-items:center}
 .footer-bottom-left{font-size:13px;color:var(--white3)}
 .footer-bottom-right{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--red)}
+
+/* MOBILE */
+@media(max-width:768px){
+  #cursor,#cursor-ring{display:none}
+  body{cursor:auto}
+  nav{padding:16px 20px}
+  .nav-links{display:none}
+  .nav-cta{padding:10px 20px;font-size:12px}
+  .nav-logo{font-size:20px}
+  .nav-logo .n2{font-size:26px}
+  .hero{grid-template-columns:1fr;padding:100px 24px 60px;gap:0}
+  .hero h1{font-size:64px}
+  .hero-right{display:none}
+  .hero-sub{font-size:16px}
+  .hero-scroll{left:24px;bottom:24px}
+  .stats-bar{grid-template-columns:1fr 1fr;border:none}
+  .stat-item{border:1px solid var(--border);margin:-0.5px}
+  .stat-num{font-size:44px}
+  section{padding:72px 24px}
+  .s-h2{font-size:52px}
+  .question-section{padding:72px 24px}
+  .big-question{font-size:40px}
+  .big-answer{font-size:44px}
+  .principles-grid{grid-template-columns:1fr}
+  .pc-num{font-size:64px}
+  .pc-title{font-size:28px}
+  .funnel-layout{grid-template-columns:1fr;gap:48px}
+  .css-mindmap{grid-template-areas:'top' 'topleft' 'topright' 'left' 'center' 'right' 'botleft' 'bottom' 'botright';grid-template-columns:1fr}
+  .bm-node{text-align:left !important}
+  .bm-node::after{display:none}
+  .mm-left,.mm-right{justify-content:flex-start}
+  .process-timeline::before{left:22px}
+  .pt-dot{width:44px;height:44px;font-size:18px}
+  .pt-title{font-size:32px}
+  .comp-grid{grid-template-columns:1fr}
+  .mq-block{grid-template-columns:1fr;gap:32px;padding:72px 24px}
+  .mq-question{font-size:40px}
+  .mq-answer{font-size:44px}
+  .mq-qmark{font-size:180px}
+  .cta-final{padding:100px 24px}
+  .cta-h{font-size:64px}
+  .cta-sub{font-size:16px}
+  .footer-top{grid-template-columns:1fr;gap:40px}
+  footer{padding:40px 24px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .btn-red,.btn-ghost{padding:14px 28px;font-size:14px}
+  .hero-btns{flex-direction:column;gap:12px}
+  .hero-btns button{width:100%}
+  .nav-cta{display:none}
+}
+@media(max-width:480px){
+  .hero h1{font-size:52px}
+  .s-h2{font-size:42px}
+  .big-question{font-size:32px}
+  .big-answer{font-size:36px}
+  .cta-h{font-size:52px}
+  .stat-num{font-size:36px}
+}
 </style>
 </head>
 <body>
 
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#principles" onclick="closeMob()">Yasalar</a>
+  <a href="#process" onclick="closeMob()">Süreç</a>
+  <a href="#brandmap" onclick="closeMob()">Harita</a>
+  <a href="#funnel" onclick="closeMob()">Funnel</a>
+  <a href="https://instagram.com/twomarketer" target="_blank" onclick="closeMob()">Instagram</a>
+  <a href="mailto:info@twomarketer.com" class="mob-cta" onclick="closeMob()">Savaşa Gir →</a>
+</div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">TWO<span class="n2">2</span>MARKETER</div>
+  <a class="nav-logo" href="#">TWO<span class="n2">2</span>MARKETER</a>
   <ul class="nav-links">
     <li><a href="#principles">Yasalar</a></li>
     <li><a href="#process">Süreç</a></li>
     <li><a href="#brandmap">Harita</a></li>
     <li><a href="#funnel">Funnel</a></li>
+    <li><a href="https://instagram.com/twomarketer" target="_blank">Instagram</a></li>
   </ul>
-  <button class="nav-cta">Savaşa Gir →</button>
+  <a href="mailto:info@twomarketer.com" class="nav-cta">Savaşa Gir →</a>
+  <button class="hamburger" id="hamburger" onclick="toggleMob()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -306,8 +393,8 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px}
       Biz bu savaşın <em>stratejistleriyiz.</em>
     </p>
     <div class="hero-btns">
-      <button class="btn-red"><span>Strateji Görüşmesi Al</span></button>
-      <button class="btn-ghost">Vaka Analizleri</button>
+      <a href="mailto:info@twomarketer.com" class="btn-red"><span>Strateji Görüşmesi Al</span></a>
+      <a href="mailto:info@twomarketer.com" class="btn-ghost">Vaka Analizleri</a>
     </div>
   </div>
   <div class="hero-right">
@@ -776,7 +863,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px}
   <p class="cta-eyebrow">Two Marketer — Zihin Savaşçıları</p>
   <h2 class="cta-h">ZİHNİ<br>KAZANAN<br>KAZANIR.</h2>
   <p class="cta-sub">Strateji olmadan harcanan her lira, rakibinizin silahıdır. <strong>Siz hangi cephede savaşıyorsunuz?</strong></p>
-  <button class="btn-black">Strateji Görüşmesi Al →</button>
+  <a href="mailto:info@twomarketer.com" class="btn-black">Strateji Görüşmesi Al →</a>
 </section>
 
 <!-- FOOTER -->
@@ -799,35 +886,32 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px}
     <div>
       <p class="footer-col-title">Temas</p>
       <ul class="footer-links">
-        <li><a href="#">Strateji Görüşmesi</a></li>
-        <li><a href="#">Vaka Analizleri</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">LinkedIn</a></li>
-        <li><a href="#"><span class="__cf_email__" data-cfemail="84edeae2ebc4f0f3ebe9e5f6efe1f0e1f6aae7ebe9">[email&#160;protected]</span></a></li>
+        <li><a href="mailto:partners@twomarketer.com">partners@twomarketer.com</a></li>
+        <li><a href="https://instagram.com/twomarketer" target="_blank">Instagram — @twomarketer</a></li>
+        <li><a href="https://www.linkedin.com/in/umut-yesilyayla/" target="_blank">LinkedIn — Umut Yeşilyayla</a></li>
+        <li><a href="https://www.linkedin.com/in/l%C3%BCtfullah-do%C4%9Fan-090130259/" target="_blank">LinkedIn — Lütfullah Doğan</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-bottom-left">© 2025 Two Marketer. Tüm haklar saklıdır.</span>
+    <span class="footer-bottom-left">© 2026 Two Marketer. Tüm haklar saklıdır.</span>
     <span class="footer-bottom-right">Pazarlama Savaştır.</span>
   </div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Cursor
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX; my=e.clientY;
-  cursor.style.left=mx+'px'; cursor.style.top=my+'px';
-});
-function animRing(){
-  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
-  ring.style.left=rx+'px'; ring.style.top=ry+'px';
-  requestAnimationFrame(animRing);
+// Mobile menu
+function toggleMob(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
 }
-animRing();
+function closeMob(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 
 // Scroll reveal
 const revealEls = document.querySelectorAll('.principle-card,.pt-item,.comp-card,.mq-block,.f-step,.bm-node,.stat-item');
